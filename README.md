@@ -3,6 +3,9 @@ Project Night Ride - Volume One
 
 Project Night Ride is a video-game inspired by the music and aesthetics of the Serbian music group Fantom.
 
+## TODO List
+- Perform static batching for static objects (traffic cones, coins in even numbered levels). Use the information at: https://docs.unity3d.com/Manual/static-batching.html
+
 ## Best build settings (so far)
 - ASTC
 - 16-bit (ETC2 fallback)
