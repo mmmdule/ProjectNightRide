@@ -47,9 +47,7 @@ public class fadeAwaySpriteTestScript : MonoBehaviour
                     color1.a = i;
                     // set color with i as alpha
                     Renderer.color = color1;//new Color(1, 1, 1, i);
-
-                    //Debug.Log("doing stuff");
-                    
+                    Debug.Log("doing stuff");
                     yield return new WaitForSeconds(0.0125f);//yield return null;
                 }
                 Renderer.enabled = false;
