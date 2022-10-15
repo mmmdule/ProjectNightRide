@@ -4,7 +4,11 @@ Project Night Ride - Volume One
 Project Night Ride is a video-game inspired by the music and aesthetics of the Serbian music group Fantom.
 
 ## TODO List
-- Perform static batching for static objects (traffic cones, coins in even numbered levels). Use the information at: https://docs.unity3d.com/Manual/static-batching.html
+- Use sprite atlases to try and have less draw calls and therefore improved performance
+  - https://gamedevelopment.tutsplus.com/articles/using-texture-atlas-in-order-to-optimize-your-game--cms-26783
+  - https://docs.unity3d.com/2022.2/Documentation/Manual/class-SpriteAtlas.html
+  
+- ~~Perform static batching for static objects (traffic cones, coins in even numbered levels). Use the information at: https://docs.unity3d.com/Manual/static-batching.html~~
 
 ## Best build settings (so far)
 - ASTC
