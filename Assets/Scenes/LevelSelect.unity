@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 964782379}
-  LevelName: 2amHighScoreStars
+  LevelName: 2amHighScore
 --- !u!1 &112905100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,7 +3048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1923401085}
-  LevelName: BeboPaziHighScoreStars
+  LevelName: BeboPaziHighScore
 --- !u!1 &591207245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,7 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1923401085}
-  LevelName: BeboPaziHighScoreStars
+  LevelName: BeboPaziHighScore
 --- !u!1 &664158589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,7 +4256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1716444277}
-  LevelName: VozisHighScoreStars
+  LevelName: VozisHighScore
 --- !u!1 &947888242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5942,7 +5942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1716444277}
-  LevelName: VozisHighScoreStars
+  LevelName: VozisHighScore
 --- !u!1 &1480148823
 GameObject:
   m_ObjectHideFlags: 0
@@ -6033,7 +6033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 555813391}
-  LevelName: IzvanHighScoreStars
+  LevelName: IzvanHighScore
 --- !u!1 &1490816074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7068,7 +7068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1961719218}
-  LevelName: LetoHighScoreStars
+  LevelName: LetoHighScore
 --- !u!1 &1773106875
 GameObject:
   m_ObjectHideFlags: 0
@@ -7447,7 +7447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 555813391}
-  LevelName: IzvanHighScoreStars
+  LevelName: IzvanHighScore
 --- !u!1 &1853959192
 GameObject:
   m_ObjectHideFlags: 0
@@ -8665,7 +8665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 964782379}
-  LevelName: 2amHighScoreStars
+  LevelName: 2amHighScore
 --- !u!1 &2098132098
 GameObject:
   m_ObjectHideFlags: 0
@@ -8756,7 +8756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1961719218}
-  LevelName: LetoHighScoreStars
+  LevelName: LetoHighScore
 --- !u!1 &2117376389
 GameObject:
   m_ObjectHideFlags: 0

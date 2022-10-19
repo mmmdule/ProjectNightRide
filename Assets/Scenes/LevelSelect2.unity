@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 525747861}
-  LevelName: PoslednjaNocHighScoreStars
+  LevelName: PoslednjaNocHighScore
 --- !u!114 &408046237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 525747861}
-  LevelName: PoslednjaNocHighScoreStars
+  LevelName: PoslednjaNocHighScore
 --- !u!114 &848837247
 MonoBehaviour:
   m_ObjectHideFlags: 0

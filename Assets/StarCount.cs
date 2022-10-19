@@ -9,7 +9,33 @@ public class StarCount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int count=0;
+        string[] levelNames = {"LetoHighScore", "2amHighScore", "VozisHighScore","IzvanHighScore", "BeboPaziHighScore","ZenaHighScore", "PoslednjaNocHighScore"};
+
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        string postfix = "Stars";
+        switch(difficulty){
+            case 0:
+                break;
+            case 1:
+                postfix = "MediumStars";
+                break;
+            case 2:
+                postfix = "HardStars";
+                break;
+            default:
+                break;
+        }
+
+        for(int i = 0; i < levelNames.Length; i++){
+            levelNames[i] += postfix;
+        }
+
+        for(int i = 0; i < levelNames.Length; i++){
+            if(!PlayerPrefs.HasKey(levelNames[i]))
+                PlayerPrefs.SetInt(levelNames[i],0);
+        }
+
+        /*
         if(!PlayerPrefs.HasKey("LetoHighScoreStars"))
             PlayerPrefs.SetInt("LetoHighScoreStars",0);
         if(!PlayerPrefs.HasKey("2amHighScoreStars"))
@@ -24,8 +50,14 @@ public class StarCount : MonoBehaviour
             PlayerPrefs.SetInt("ZenaHighScoreStars",0);
         if(!PlayerPrefs.HasKey("PoslednjaNocHighScoreStars"))
             PlayerPrefs.SetInt("PoslednjaNocHighScoreStars",0);
-
+        */
         
+        int count=0;
+        for(int i = 0; i < levelNames.Length; i++){
+            count += PlayerPrefs.GetInt(levelNames[i]);
+        }
+
+        /*
         count = PlayerPrefs.GetInt("LetoHighScoreStars") +
                 PlayerPrefs.GetInt("2amHighScoreStars") +
                 PlayerPrefs.GetInt("VozisHighScoreStars") +
@@ -33,6 +65,7 @@ public class StarCount : MonoBehaviour
                 PlayerPrefs.GetInt("BeboPaziHighScoreStars") +
                 PlayerPrefs.GetInt("ZenaHighScoreStars") +
                 PlayerPrefs.GetInt("PoslednjaNocHighScoreStars");
+        */
         gameObject.GetComponent<Text>().text=count.ToString();
     }
 
