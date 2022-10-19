@@ -7,7 +7,7 @@ public class pauseCountdown : MonoBehaviour{
     private GameObject Camera,pause,player,ButtonCanvas,frontWheel,backWheel;
     private Text textMid,textFront,textBack;
     public bool count,gameOver;
-    private int frames;
+    private int frames, health;
     private GameObject endLevel;
     // Start is called before the first frame update
     void Start(){
@@ -26,6 +26,16 @@ public class pauseCountdown : MonoBehaviour{
         player = GameObject.Find("player");
         frontWheel = GameObject.Find("frontWheel");
         backWheel = GameObject.Find("backWheel");
+
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        health = 3;
+        switch(difficulty){ //proverava samo hard
+            case 2: 
+                health = 1;
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -77,7 +87,8 @@ public class pauseCountdown : MonoBehaviour{
                 frontWheel.GetComponent<WheelSpinFica>().enabled = true;
                 //gameObject.GetComponent<pauseCountdown>().enabled = false;
                 if(gameOver){
-                    player.GetComponent<PlayerCrash>().HitPoints=3;
+                    player.GetComponent<PlayerCrash>().HitPoints=health; //health based on difficulty
+                    Debug.Log("CONTINUED - Gave player " + health + " HIT POINTS");
                     player.GetComponent<PlayerCrash>().blinkCount = 0;
                     player.GetComponent<PlayerCrash>().iFrameCount = 0;
                     player.GetComponent<PlayerCrash>().invinci = true;

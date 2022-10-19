@@ -16,6 +16,9 @@ public class Continue : MonoBehaviour
     private GameObject endLevel;
     public void Click()
     {
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        
+
         endLevel = GameObject.Find("EndOfLevelTrigger");
         
         frontWheel = GameObject.Find("frontWheel");
@@ -24,8 +27,7 @@ public class Continue : MonoBehaviour
         countdownCanvas=GameObject.Find("countdownCanvas");
 
         hitUI1 = GameObject.Find("LifeDot1");
-        hitUI2 = GameObject.Find("LifeDot2");
-        hitUI3 = GameObject.Find("LifeDot3");
+
         //hitUI4 = GameObject.Find("LifeDot4");
         //hitUI5 = GameObject.Find("LifeDot5");
 
@@ -33,7 +35,9 @@ public class Continue : MonoBehaviour
         ScoreText = ScoreCounter.GetComponent<Text>();                
         ScoreCounter2 = GameObject.Find("ScoreShadow");
         ScoreText2 = ScoreCounter2.GetComponent<Text>();
+
         Cam=GameObject.Find("Main Camera");
+
         price = int.Parse(GameObject.Find("TextPrice").GetComponent<Text>().text);
         Debug.Log(price.ToString());
         player=GameObject.Find("player");
@@ -45,10 +49,20 @@ public class Continue : MonoBehaviour
         }
         else
         {
-            
-            hitUI1.GetComponent<SpriteRenderer>().color=Color.green;            
-            hitUI2.GetComponent<SpriteRenderer>().color=Color.green;
-            hitUI3.GetComponent<SpriteRenderer>().color=Color.green;           
+            switch(difficulty){
+                case 0: case 1:    
+                    hitUI2 = GameObject.Find("LifeDot2");
+                    hitUI3 = GameObject.Find("LifeDot3");
+                    hitUI1.GetComponent<SpriteRenderer>().color=Color.green;            
+                    hitUI2.GetComponent<SpriteRenderer>().color=Color.green;
+                    hitUI3.GetComponent<SpriteRenderer>().color=Color.green;  
+                    break;
+                case 2:
+                    hitUI1.GetComponent<SpriteRenderer>().color=Color.green;
+                    break;
+                default:
+                    break;
+            }         
             //hitUI4.GetComponent<SpriteRenderer>().color=Color.green;
             //hitUI5.GetComponent<SpriteRenderer>().color=Color.green;
 
