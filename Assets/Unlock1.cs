@@ -10,6 +10,20 @@ public class Unlock1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        switch(difficulty){
+            case 0:
+                break;
+            case 1:
+                LevelName += "Medium";
+                break;
+            case 2:
+                LevelName += "Hard";
+                break;
+            default:
+                break;
+        }
+        
         int count = int.Parse(GameObject.Find("StarNumber").GetComponent<Text>().text);
         if (count>=18){
             button.GetComponent<Button>().enabled = true;
