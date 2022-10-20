@@ -167,7 +167,9 @@ public class PlayerCrash : MonoBehaviour
             if(HitPoints==4){
                 //hitUI5.GetComponent<AudioSource>().PlayOneShot(hitUI5.GetComponent<AudioSource>().clip);
                 hitUI5.GetComponent<SpriteRenderer>().color=Color.gray;
+                
                 damage[0].enabled = true;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
             }
             else if(HitPoints==3){
                 //hitUI4.GetComponent<AudioSource>().PlayOneShot(hitUI4.GetComponent<AudioSource>().clip);
@@ -178,6 +180,8 @@ public class PlayerCrash : MonoBehaviour
                 hitUI1.GetComponent<SpriteRenderer>().color=Color.yellow;
                 damage[0].enabled = true;
                 damage[1].enabled = true;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[1].sortingOrder = damage[0].sortingOrder;
 
             }
             if(HitPoints==2){
@@ -191,6 +195,9 @@ public class PlayerCrash : MonoBehaviour
                 damage[0].enabled = true;
                 damage[1].enabled = true;
                 damage[2].enabled = true;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[1].sortingOrder = damage[0].sortingOrder;
+                damage[2].sortingOrder = damage[0].sortingOrder;
 
             }
             else if(HitPoints==1){
@@ -204,6 +211,10 @@ public class PlayerCrash : MonoBehaviour
                 damage[1].enabled = true;
                 damage[2].enabled = true;
                 damage[3].enabled = true;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[1].sortingOrder = damage[0].sortingOrder;
+                damage[2].sortingOrder = damage[0].sortingOrder;
+                damage[3].sortingOrder = damage[0].sortingOrder;
 
             }
             else if (HitPoints==0){

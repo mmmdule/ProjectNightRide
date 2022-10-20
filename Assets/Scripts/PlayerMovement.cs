@@ -33,18 +33,18 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKeyDown("down") || Input.GetKeyDown("s")) && sortOrder < 7){ //transform.position.y>-5.43f){
             transform.position = new Vector3(transform.position.x, transform.position.y - 1.02f, transform.position.z);
             spriteR.sortingOrder +=1;
-            damage[0].sortingOrder += 1;
-            damage[1].sortingOrder += 1;
-            damage[2].sortingOrder += 1;
-            damage[3].sortingOrder += 1;
+            damage[0].sortingOrder = spriteR.sortingOrder;
+            damage[1].sortingOrder = spriteR.sortingOrder;
+            damage[2].sortingOrder = spriteR.sortingOrder;
+            damage[3].sortingOrder = spriteR.sortingOrder;
         }
         if ((Input.GetKeyDown("up") || Input.GetKeyDown("w")) && (sortOrder > 4)){// && transform.position.y!=-2.38f){
             transform.position = new Vector3(transform.position.x, transform.position.y + 1.02f, transform.position.z);
             spriteR.sortingOrder -=1;
-            damage[0].sortingOrder -= 1;
-            damage[1].sortingOrder -= 1;
-            damage[2].sortingOrder -= 1;
-            damage[3].sortingOrder -= 1;
+            damage[0].sortingOrder = spriteR.sortingOrder;
+            damage[1].sortingOrder = spriteR.sortingOrder;
+            damage[2].sortingOrder = spriteR.sortingOrder;
+            damage[3].sortingOrder = spriteR.sortingOrder;
         }
         transform.position = new Vector3(transform.position.x + speed , transform.position.y, transform.position.z);
         
