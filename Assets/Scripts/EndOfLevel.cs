@@ -30,6 +30,21 @@ public class EndOfLevel : MonoBehaviour
         button = GameObject.Find("EndLevelButton");
         song = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         //reachedEnd = false;
+
+    int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        switch(difficulty){
+            case 0:
+                break;
+            case 1:
+                HighScorePrefName += "Medium";
+                break;
+            case 2:
+                HighScorePrefName += "Hard";
+                break;
+            default:
+                break;
+        }
+        
     }
 
     // Update is called once per frame

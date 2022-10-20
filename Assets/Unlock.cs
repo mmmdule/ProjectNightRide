@@ -10,7 +10,21 @@ public class Unlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt(LevelName)>0){
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        switch(difficulty){
+            case 0:
+                break;
+            case 1:
+                LevelName += "MediumStars";
+                break;
+            case 2:
+                LevelName += "HardStars";
+                break;
+            default:
+                break;
+        }
+
+        if (PlayerPrefs.GetInt(LevelName, 0)>0){
             button.GetComponent<Button>().enabled = true;
             gameObject.SetActive(false);
         }

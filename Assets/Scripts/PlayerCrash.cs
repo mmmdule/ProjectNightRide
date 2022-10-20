@@ -14,7 +14,7 @@ public class PlayerCrash : MonoBehaviour
 
     public int HitPoints;
 
-    private GameObject hitUI1,hitUI2,hitUI3/*,hitUI4,hitUI5*/;
+    private GameObject hitUI1,hitUI2,hitUI3, hitUI4, hitUI5;
     public int blinkCount,iFrameCount;//blinkEnemy;
     private GameObject crashedNPC;
     public bool invinci,pause;
@@ -42,12 +42,34 @@ public class PlayerCrash : MonoBehaviour
         hitUI2.GetComponent<SpriteRenderer>().color=Color.green;
         hitUI3 = GameObject.Find("LifeDot3");
         hitUI3.GetComponent<SpriteRenderer>().color=Color.green;
-        /*hitUI4 = GameObject.Find("LifeDot4");
+        hitUI4 = GameObject.Find("LifeDot4");
         hitUI4.GetComponent<SpriteRenderer>().color=Color.green;
         hitUI5 = GameObject.Find("LifeDot5");
-        hitUI5.GetComponent<SpriteRenderer>().color=Color.green;*/
+        hitUI5.GetComponent<SpriteRenderer>().color=Color.green;
 
-        HitPoints = 3;
+        crashedNPC = null;
+
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        switch(difficulty){
+            case 0:
+                HitPoints = 5;
+                break;
+            case 1:
+                HitPoints = 3;
+                hitUI4.SetActive(false);
+                hitUI5.SetActive(false);
+                break;
+            case 2:
+                HitPoints = 1;
+                hitUI2.SetActive(false);
+                hitUI3.SetActive(false);
+                hitUI4.SetActive(false);
+                hitUI5.SetActive(false);
+                break;
+            default:
+                break;
+        }
+        //HitPoints = 3;
         blinkCount = 0;
         //blinkEnemy = 0;
 
@@ -56,7 +78,7 @@ public class PlayerCrash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HitPoints==2 || HitPoints==1){
+        if(HitPoints > 0 && crashedNPC!=null){//if(HitPoints==2 || HitPoints==1){
             if(crashedNPC.activeInHierarchy!=false){
                 if(blinkCount<120){
                     if(blinkCount%10==0)
@@ -68,9 +90,9 @@ public class PlayerCrash : MonoBehaviour
             }
             else
                 blinkCount=0;
-
-            
         }
+
+
         if(invinci && !pause){
                 if(iFrameCount<=120){
                     if(iFrameCount%20==0 && iFrameCount>0)
@@ -124,7 +146,7 @@ public class PlayerCrash : MonoBehaviour
                 crashedNPC = collision.gameObject;            
                 collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 
-                hitUI3.GetComponent<AudioSource>().PlayOneShot(hitUI3.GetComponent<AudioSource>().clip);
+                hitUI1.GetComponent<AudioSource>().PlayOneShot(hitUI1.GetComponent<AudioSource>().clip);
                 
                 HitPoints--;
                 invinci = true;
@@ -133,19 +155,20 @@ public class PlayerCrash : MonoBehaviour
                 crashedNPC = collision.gameObject;            
                 collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             }
-            /*if(HitPoints==4){
-                hitUI5.GetComponent<AudioSource>().PlayOneShot(hitUI5.GetComponent<AudioSource>().clip);
+            
+            if(HitPoints==4){
+                //hitUI5.GetComponent<AudioSource>().PlayOneShot(hitUI5.GetComponent<AudioSource>().clip);
                 hitUI5.GetComponent<SpriteRenderer>().color=Color.gray;
             }
             else if(HitPoints==3){
-                hitUI4.GetComponent<AudioSource>().PlayOneShot(hitUI4.GetComponent<AudioSource>().clip);
+                //hitUI4.GetComponent<AudioSource>().PlayOneShot(hitUI4.GetComponent<AudioSource>().clip);
                 hitUI4.GetComponent<SpriteRenderer>().color=Color.gray;
                 
                 hitUI3.GetComponent<SpriteRenderer>().color=Color.yellow;
                 hitUI2.GetComponent<SpriteRenderer>().color=Color.yellow;
                 hitUI1.GetComponent<SpriteRenderer>().color=Color.yellow;
 
-            }*/
+            }
             if(HitPoints==2){
                 if(invinci==false)
                     hitUI3.GetComponent<AudioSource>().PlayOneShot(hitUI3.GetComponent<AudioSource>().clip);
