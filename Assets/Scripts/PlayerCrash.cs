@@ -15,6 +15,7 @@ public class PlayerCrash : MonoBehaviour
     public int HitPoints;
 
     private GameObject hitUI1,hitUI2,hitUI3, hitUI4, hitUI5;
+    private SpriteRenderer[] damage;
     public int blinkCount,iFrameCount;//blinkEnemy;
     private GameObject crashedNPC;
     public bool invinci,pause;
@@ -72,6 +73,12 @@ public class PlayerCrash : MonoBehaviour
         //HitPoints = 3;
         blinkCount = 0;
         //blinkEnemy = 0;
+
+        damage = new SpriteRenderer[4];
+        for(int i = 1; i <= 4; i++){
+            damage[i-1] = GameObject.Find("crack" + i).GetComponent<SpriteRenderer>();
+        }
+        
 
     }
 
@@ -154,11 +161,13 @@ public class PlayerCrash : MonoBehaviour
             else{
                 crashedNPC = collision.gameObject;            
                 collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                return;
             }
             
             if(HitPoints==4){
                 //hitUI5.GetComponent<AudioSource>().PlayOneShot(hitUI5.GetComponent<AudioSource>().clip);
                 hitUI5.GetComponent<SpriteRenderer>().color=Color.gray;
+                damage[0].enabled = true;
             }
             else if(HitPoints==3){
                 //hitUI4.GetComponent<AudioSource>().PlayOneShot(hitUI4.GetComponent<AudioSource>().clip);
@@ -167,23 +176,34 @@ public class PlayerCrash : MonoBehaviour
                 hitUI3.GetComponent<SpriteRenderer>().color=Color.yellow;
                 hitUI2.GetComponent<SpriteRenderer>().color=Color.yellow;
                 hitUI1.GetComponent<SpriteRenderer>().color=Color.yellow;
+                damage[0].enabled = true;
+                damage[1].enabled = true;
 
             }
             if(HitPoints==2){
-                if(invinci==false)
-                    hitUI3.GetComponent<AudioSource>().PlayOneShot(hitUI3.GetComponent<AudioSource>().clip);
+                //if(invinci==false)
+                    //hitUI1.GetComponent<AudioSource>().PlayOneShot(hitUI3.GetComponent<AudioSource>().clip);
                 hitUI3.GetComponent<SpriteRenderer>().color=Color.gray;
                 
                 hitUI2.GetComponent<SpriteRenderer>().color=Color.yellow;
                 hitUI1.GetComponent<SpriteRenderer>().color=Color.yellow;
 
+                damage[0].enabled = true;
+                damage[1].enabled = true;
+                damage[2].enabled = true;
+
             }
             else if(HitPoints==1){
-                if(invinci==false)
-                    hitUI2.GetComponent<AudioSource>().PlayOneShot(hitUI2.GetComponent<AudioSource>().clip);
+                //if(invinci==false)
+                    //hitUI1.GetComponent<AudioSource>().PlayOneShot(hitUI2.GetComponent<AudioSource>().clip);
                 hitUI2.GetComponent<SpriteRenderer>().color=Color.gray;
                 
                 hitUI1.GetComponent<SpriteRenderer>().color=Color.red;
+
+                damage[0].enabled = true;
+                damage[1].enabled = true;
+                damage[2].enabled = true;
+                damage[3].enabled = true;
 
             }
             else if (HitPoints==0){
@@ -213,6 +233,11 @@ public class PlayerCrash : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<CameraScript>().coinObstacleSpeed = 0f;
                 gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 //If the GameObject's tag matches the one you suggest, output this message in the console
+
+                damage[0].enabled = false;
+                damage[1].enabled = false;
+                damage[2].enabled = false;
+                damage[3].enabled = false;
             }
         }
     }
