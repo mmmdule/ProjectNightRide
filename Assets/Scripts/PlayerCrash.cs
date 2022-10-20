@@ -169,7 +169,7 @@ public class PlayerCrash : MonoBehaviour
                 hitUI5.GetComponent<SpriteRenderer>().color=Color.gray;
                 
                 damage[0].enabled = true;
-                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
             }
             else if(HitPoints==3){
                 //hitUI4.GetComponent<AudioSource>().PlayOneShot(hitUI4.GetComponent<AudioSource>().clip);
@@ -180,7 +180,7 @@ public class PlayerCrash : MonoBehaviour
                 hitUI1.GetComponent<SpriteRenderer>().color=Color.yellow;
                 damage[0].enabled = true;
                 damage[1].enabled = true;
-                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
                 damage[1].sortingOrder = damage[0].sortingOrder;
 
             }
@@ -195,7 +195,7 @@ public class PlayerCrash : MonoBehaviour
                 damage[0].enabled = true;
                 damage[1].enabled = true;
                 damage[2].enabled = true;
-                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
                 damage[1].sortingOrder = damage[0].sortingOrder;
                 damage[2].sortingOrder = damage[0].sortingOrder;
 
@@ -211,7 +211,7 @@ public class PlayerCrash : MonoBehaviour
                 damage[1].enabled = true;
                 damage[2].enabled = true;
                 damage[3].enabled = true;
-                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+                damage[0].sortingOrder = gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
                 damage[1].sortingOrder = damage[0].sortingOrder;
                 damage[2].sortingOrder = damage[0].sortingOrder;
                 damage[3].sortingOrder = damage[0].sortingOrder;

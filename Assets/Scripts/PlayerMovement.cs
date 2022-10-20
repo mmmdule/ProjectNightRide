@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteR;
     private int sortOrder;
     private SpriteRenderer[] damage;
+    private Vector3 moveVector;
    /* public GameObject leftPiece;
     public GameObject centerPiece;
     public GameObject rightPiece;*/
@@ -22,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         for(int i = 1; i <= 4; i++){
             damage[i-1] = GameObject.Find("crack" + i).GetComponent<SpriteRenderer>();
         }
+
+        moveVector = new Vector3();
     }
     //sorting order starts at 4
 
@@ -30,6 +33,10 @@ public class PlayerMovement : MonoBehaviour
     {
         sortOrder = spriteR.sortingOrder;
         //-5.440001
+
+        moveVector = gameObject.transform.position;
+
+        /* ENABLE FOR TESTING, COMMENT OUT WHEN BUILDING
         if ((Input.GetKeyDown("down") || Input.GetKeyDown("s")) && sortOrder < 7){ //transform.position.y>-5.43f){
             transform.position = new Vector3(transform.position.x, transform.position.y - 1.02f, transform.position.z);
             spriteR.sortingOrder +=1;
@@ -46,8 +53,12 @@ public class PlayerMovement : MonoBehaviour
             damage[2].sortingOrder = spriteR.sortingOrder;
             damage[3].sortingOrder = spriteR.sortingOrder;
         }
-        transform.position = new Vector3(transform.position.x + speed , transform.position.y, transform.position.z);
         
+        ENABLE FOR TESTING, COMMENT OUT WHEN BUILDING */
+        
+        moveVector.x += speed;
+        transform.position = moveVector; //new Vector3(transform.position.x + speed , transform.position.y, transform.position.z);
+
         /*if(transform.position.x%23.43f==0){
             leftPiece.transform.position = new Vector3(leftPiece.transform.position.x + 115.64f, leftPiece.transform.position.y, leftPiece.transform.position.z);
             centerPiece.transform.position = new Vector3(centerPiece.transform.position.x + 115.64f, centerPiece.transform.position.y, centerPiece.transform.position.z);
