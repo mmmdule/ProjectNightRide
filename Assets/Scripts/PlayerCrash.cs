@@ -21,8 +21,11 @@ public class PlayerCrash : MonoBehaviour
     public bool invinci,pause;
     private GameObject endLevel;
 
+    public bool PerfectRun; //za statistiku
     void Start()
     {
+        PerfectRun = true;
+
         endLevel = GameObject.Find("EndOfLevelTrigger");
         //canvasGroup = GameObject.Find("Canvas Group");
 
@@ -156,6 +159,7 @@ public class PlayerCrash : MonoBehaviour
                 hitUI1.GetComponent<AudioSource>().PlayOneShot(hitUI1.GetComponent<AudioSource>().clip);
                 
                 HitPoints--;
+                PerfectRun = false;
                 invinci = true;
             }
             else{
@@ -249,6 +253,11 @@ public class PlayerCrash : MonoBehaviour
                 damage[1].enabled = false;
                 damage[2].enabled = false;
                 damage[3].enabled = false;
+
+                //za statistiku
+                int GameOvers = PlayerPrefs.GetInt("GameOvers",0);
+                PlayerPrefs.SetInt("GameOvers", GameOvers + 1);
+                //za statistiku
             }
         }
     }

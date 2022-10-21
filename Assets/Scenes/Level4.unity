@@ -29639,6 +29639,8 @@ MonoBehaviour:
   isPaused: 0
   isCountingDown: 0
   isGameOver: 0
+  PerfectConeCheck: 1
+  ConesArePerfect: 0
 --- !u!1001 &1300894036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40306,6 +40308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.15
   speedOG: 0.15
+  NotPlayableSection: 0
 --- !u!212 &1798180241
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40560,6 +40563,7 @@ MonoBehaviour:
   iFrameCount: 0
   invinci: 0
   pause: 0
+  PerfectRun: 0
 --- !u!114 &1798180248
 MonoBehaviour:
   m_ObjectHideFlags: 0

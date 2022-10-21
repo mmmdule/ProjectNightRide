@@ -15,10 +15,20 @@ public class EndOfLevel : MonoBehaviour
     private AudioSource song; 
     int newScore;
     public bool isPaused, isCountingDown, isGameOver;
+
+    //za statistiku
+    public bool PerfectConeCheck, ConesArePerfect;
+    //za statistiku
+
     //bool reachedEnd;
     // Start is called before the first frame update
     void Start()
     {
+        //za statistiku
+        ConesArePerfect = true;
+        //za statistiku
+
+
         objectCollider = gameObject.GetComponent<BoxCollider2D>();        
         playerCollider = GameObject.Find("player").GetComponent<BoxCollider2D>();
         PauseButton = GameObject.Find("PauseButton");
@@ -56,9 +66,35 @@ public class EndOfLevel : MonoBehaviour
                 Debug.Log("Hit end.");
                 PauseButton.SetActive(false);
                 //reachedEnd = true;
+
+
+
                 newScore=int.Parse(GameObject.Find("Score").GetComponent<Text>().text); 
                 endOfLevel.GetComponent<Canvas>().enabled=true;
+
+                //za statistiku
+                if(PerfectConeCheck){
+                    if(ConesArePerfect){
+                        int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
+                        PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                    }
+                }
+                else{
+                    if(GameObject.Find("player").GetComponent<PlayerCrash>().PerfectRun){
+                        int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
+                        PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                    }
+                }
+                
+                //za statistiku
+
                 if(newScore>0){
+
+                    //za statistiku
+                    int coinCount = PlayerPrefs.GetInt("CollectedCoins",0);
+                    PlayerPrefs.SetInt("CollectedCoins", coinCount + newScore/50);
+                    //za statistiku
+
                     if(newScore > PlayerPrefs.GetInt(HighScorePrefName)){
                         newHighScore.SetActive(true);
                         newHighScoreShadow.SetActive(true);
@@ -87,7 +123,10 @@ public class EndOfLevel : MonoBehaviour
                             cones[i].SetActive(false);
                     }
                 }
-            StartCoroutine(exitDelay(3.75f));
+
+                PlayerPrefs.Save(); //mozda izbaciti ako mnogo utice na performanse
+
+                StartCoroutine(exitDelay(3.75f));
                 /*//iz funkcije koja je ranije bila kolizija EndLevelTrigger-a sa Player-om
 
                     textExit.GetComponent<Text>().enabled = true;
