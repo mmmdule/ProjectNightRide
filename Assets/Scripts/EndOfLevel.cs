@@ -18,6 +18,7 @@ public class EndOfLevel : MonoBehaviour
 
     //za statistiku
     public bool PerfectConeCheck, ConesArePerfect;
+    private bool savedStats, savedCoinStats;
     //za statistiku
 
     //bool reachedEnd;
@@ -26,6 +27,8 @@ public class EndOfLevel : MonoBehaviour
     {
         //za statistiku
         ConesArePerfect = true;
+        savedStats = false;
+        savedCoinStats = false;
         //za statistiku
 
 
@@ -73,17 +76,20 @@ public class EndOfLevel : MonoBehaviour
                 endOfLevel.GetComponent<Canvas>().enabled=true;
 
                 //za statistiku
-                if(PerfectConeCheck){
-                    if(ConesArePerfect){
-                        int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
-                        PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                if(!savedStats){
+                    if(PerfectConeCheck){
+                        if(ConesArePerfect){
+                            int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
+                            PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                        }
                     }
-                }
-                else{
-                    if(GameObject.Find("player").GetComponent<PlayerCrash>().PerfectRun){
-                        int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
-                        PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                    else{
+                        if(GameObject.Find("player").GetComponent<PlayerCrash>().PerfectRun){
+                            int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
+                            PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                        }
                     }
+                    savedStats = true;
                 }
                 
                 //za statistiku
@@ -91,8 +97,12 @@ public class EndOfLevel : MonoBehaviour
                 if(newScore>0){
 
                     //za statistiku
-                    int coinCount = PlayerPrefs.GetInt("CollectedCoins",0);
-                    PlayerPrefs.SetInt("CollectedCoins", coinCount + newScore/50);
+                    if(!savedCoinStats){
+                        int coinCount = PlayerPrefs.GetInt("CollectedCoins",0);
+                        PlayerPrefs.SetInt("CollectedCoins", coinCount + newScore/50);
+                        savedCoinStats = true;
+                    }
+                    
                     //za statistiku
 
                     if(newScore > PlayerPrefs.GetInt(HighScorePrefName)){
