@@ -42,6 +42,7 @@ public class pauseCountdown : MonoBehaviour{
     void Update(){
         if(count){
             endLevel.GetComponent<EndOfLevel>().isPaused = true;
+            endLevel.GetComponent<EndOfLevel>().isCountingDown = true;
             if(frames==120){
                 textBack.text = textBack.text.Replace(textBack.text, "2");
                 textBack.SetAllDirty();
@@ -73,6 +74,7 @@ public class pauseCountdown : MonoBehaviour{
                 Camera.GetComponent<AudioSource>().UnPause();
                 endLevel.GetComponent<EndOfLevel>().isPaused = false;
                 endLevel.GetComponent<EndOfLevel>().isGameOver = false;
+                endLevel.GetComponent<EndOfLevel>().isCountingDown = false;
 
                 Camera.GetComponent<CameraScript>().coinObstacleSpeed = player.GetComponent<PauseContinue>().spidNPC;
         

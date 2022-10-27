@@ -66,7 +66,7 @@ public class EndOfLevel : MonoBehaviour
         //if(reachedEnd){
             if(!song.isPlaying && !isPaused && !isCountingDown && !isGameOver){
                 //iz funkcije koja je ranije bila kolizija EndLevelTrigger-a sa Player-om
-                Debug.Log("Hit end.");
+                Debug.Log("Hit end. " + ". isPaused: " + isPaused.ToString() + ". isCountingDown: " + isCountingDown.ToString() + ". isGameOver: " + isGameOver.ToString());
                 PauseButton.SetActive(false);
                 //reachedEnd = true;
 

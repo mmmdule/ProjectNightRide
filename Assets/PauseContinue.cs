@@ -25,6 +25,7 @@ public class PauseContinue : MonoBehaviour
         countdownCanvas.GetComponent<pauseCountdown>().enabled = true;
         countdownCanvas.GetComponent<pauseCountdown>().count = true;
         endLevel.GetComponent<EndOfLevel>().isPaused = false;
+        endLevel.GetComponent<EndOfLevel>().isCountingDown = true;
 
         //HERE
         //ButtonCanvas.SetActive(true);
