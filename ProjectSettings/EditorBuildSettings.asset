@@ -51,6 +51,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Difficulty.unity
     guid: 0bba47532e8f3c74b8bd8c5135e12a11
   - enabled: 1
-    path: Assets/Scenes/Stats1.unity
+    path: Assets/Scenes/Stats.unity
+    guid: 4d5dd79b148bb1548908bc605d52ad9e
+  - enabled: 1
+    path: Assets/Scenes/HighScores.unity
     guid: d32c2fc75f6e4734eb6cec06651a7c5b
   m_configObjects: {}

@@ -79,8 +79,12 @@ public class MainStatsScript : MonoBehaviour
         };
 
         List<KeyValuePair<int, string>> LevelKeyValuePairList = new List<KeyValuePair<int, string>>();
-        for(int i = 0; i < LevelValues.Length; i++)
+        int count = 0;
+        for(int i = 0; i < LevelValues.Length; i++){
             LevelKeyValuePairList.Add( new KeyValuePair<int, string>(LevelValues[i], LevelNames[i]) );
+            count += LevelValues[i];
+        }
+            
         /*
         LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("LetoLevelCount",0) + PlayerPrefs.GetInt("LetoMediumLevelCount",0) + PlayerPrefs.GetInt("LetoHardLevelCount",0), LevelNames[0]));
         LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("2amLevelCount",0) + PlayerPrefs.GetInt("2amMediumLevelCount",0) + PlayerPrefs.GetInt("2amHardLevelCount",0), LevelNames[1]));
@@ -93,8 +97,9 @@ public class MainStatsScript : MonoBehaviour
 
         LevelKeyValuePairList.Sort((x, y) => x.Key.CompareTo(y.Key));
 
-
-        string result = LevelKeyValuePairList[LevelKeyValuePairList.Count-1].Value;
+        string result = "";
+        if(count > 0)
+            result = LevelKeyValuePairList[LevelKeyValuePairList.Count-1].Value;
         return result;
     }
 
