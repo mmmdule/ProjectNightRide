@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Retry : MonoBehaviour
+public class LevelTimesPlayedStat : MonoBehaviour
 {
-    public void Klik(){
-            string levelName = GameObject.Find("Main Camera").GetComponent<LevelTimesPlayedStat>().LevelName;
-            if(changeTimesPlayedCount(levelName, -1)==0)
-                Debug.Log("Times level has been played Stat successfully decreased.");
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    public string LevelName;
+    public int Value;
+    // Start is called before the first frame update
+    void Start()
+    {
+        if(changeTimesPlayedCount(LevelName, Value)==0)
+            Debug.Log("Times level has been played Stat successfully saved.");
     }
 
     int changeTimesPlayedCount(string LevelName, int value){ //value = 1 for increase, -1 for decrease
@@ -41,4 +41,5 @@ public class Retry : MonoBehaviour
         }
         
     }
+
 }

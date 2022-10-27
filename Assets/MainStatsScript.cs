@@ -64,8 +64,37 @@ public class MainStatsScript : MonoBehaviour
         return result;
     }
 
-    string MostPlayed(){
-        string result = "";
+    string MostPlayed(){ //Mozda moze i da proveri koja je tezina
+        string[] LevelPrefNames = {"Leto", "2am", "Vozis", "Izvan", "BeboPazi", "Zena", "PoslednjaNoc"};
+        string[] LevelNames = {"Leto", "2am", "Luna", "Izvan vremena", "Bebo, pazi", "Zena", "Poslednja Noc"};
+
+        int[] LevelValues = { 
+            PlayerPrefs.GetInt("LetoLevelCount",0) + PlayerPrefs.GetInt("LetoMediumLevelCount",0) + PlayerPrefs.GetInt("LetoHardLevelCount",0),
+            PlayerPrefs.GetInt("2amLevelCount",0) + PlayerPrefs.GetInt("2amMediumLevelCount",0) + PlayerPrefs.GetInt("2amHardLevelCount",0),  
+            PlayerPrefs.GetInt("VozisLevelCount",0) + PlayerPrefs.GetInt("VozisMediumLevelCount",0) + PlayerPrefs.GetInt("VozisHardLevelCount",0),
+            PlayerPrefs.GetInt("IzvanLevelCount",0) + PlayerPrefs.GetInt("IzvanMediumLevelCount",0) + PlayerPrefs.GetInt("IzvanHardLevelCount",0),
+            PlayerPrefs.GetInt("BeboPaziLevelCount",0) + PlayerPrefs.GetInt("BeboPaziMediumLevelCount",0) + PlayerPrefs.GetInt("BeboPaziHardLevelCount",0),
+            PlayerPrefs.GetInt("ZenaLevelCount",0) + PlayerPrefs.GetInt("ZenaMediumLevelCount",0) + PlayerPrefs.GetInt("ZenaHardLevelCount",0),
+            PlayerPrefs.GetInt("PoslednjaNocLevelCount",0) + PlayerPrefs.GetInt("PoslednjaNocMediumLevelCount",0) + PlayerPrefs.GetInt("PoslednjaNocHardLevelCount",0)
+        };
+
+        List<KeyValuePair<int, string>> LevelKeyValuePairList = new List<KeyValuePair<int, string>>();
+        for(int i = 0; i < LevelValues.Length; i++)
+            LevelKeyValuePairList.Add( new KeyValuePair<int, string>(LevelValues[i], LevelNames[i]) );
+        /*
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("LetoLevelCount",0) + PlayerPrefs.GetInt("LetoMediumLevelCount",0) + PlayerPrefs.GetInt("LetoHardLevelCount",0), LevelNames[0]));
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("2amLevelCount",0) + PlayerPrefs.GetInt("2amMediumLevelCount",0) + PlayerPrefs.GetInt("2amHardLevelCount",0), LevelNames[1]));
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("VozisLevelCount",0) + PlayerPrefs.GetInt("VozisMediumLevelCount",0) + PlayerPrefs.GetInt("VozisHardLevelCount",0), LevelNames[2]));
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("IzvanLevelCount",0) + PlayerPrefs.GetInt("IzvanMediumLevelCount",0) + PlayerPrefs.GetInt("IzvanHardLevelCount",0), LevelNames[3]));
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("BeboPaziLevelCount",0) + PlayerPrefs.GetInt("BeboPaziMediumLevelCount",0) + PlayerPrefs.GetInt("BeboPaziHardLevelCount",0), LevelNames[4]));
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("ZenaLevelCount",0) + PlayerPrefs.GetInt("ZenaMediumLevelCount",0) + PlayerPrefs.GetInt("ZenaHardLevelCount",0), LevelNames[4]));
+        LevelKeyValuePairList.Add(new KeyValuePair<int, string>(PlayerPrefs.GetInt("PoslednjaNocLevelCount",0) + PlayerPrefs.GetInt("PoslednjaNocMediumLevelCount",0) + PlayerPrefs.GetInt("PoslednjaNocHardLevelCount",0), LevelNames[5]));
+        */
+
+        LevelKeyValuePairList.Sort((x, y) => x.Key.CompareTo(y.Key));
+
+
+        string result = LevelKeyValuePairList[LevelKeyValuePairList.Count-1].Value;
         return result;
     }
 
