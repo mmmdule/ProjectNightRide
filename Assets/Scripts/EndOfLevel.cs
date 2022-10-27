@@ -105,12 +105,13 @@ public class EndOfLevel : MonoBehaviour
                     
                     //za statistiku
 
-                    if(newScore > PlayerPrefs.GetInt(HighScorePrefName)){
+                    if(newScore > PlayerPrefs.GetInt(HighScorePrefName, 0)){
+                        Debug.Log("New High Score is " + newScore.ToString());
+                        Debug.Log("Previous High Score was " + PlayerPrefs.GetInt(HighScorePrefName, 0));
                         newHighScore.SetActive(true);
                         newHighScoreShadow.SetActive(true);
                         PlayerPrefs.SetInt(HighScorePrefName , newScore);
                         PlayerPrefs.Save();
-                        Debug.Log("New High Score is " + newScore.ToString());
                     }
                 }                       
                 else{
