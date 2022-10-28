@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private int sortOrder;
     private SpriteRenderer[] damage;
     private Vector3 moveVector;
-    public bool NotPlayableSection;
    /* public GameObject leftPiece;
     public GameObject centerPiece;
     public GameObject rightPiece;*/
@@ -20,13 +19,10 @@ public class PlayerMovement : MonoBehaviour
         rightPiece = GameObject.Find("RightPiece"); */
         spriteR = gameObject.GetComponent<SpriteRenderer>();
 
-        if(!NotPlayableSection){
-            damage = new SpriteRenderer[4];
-            for(int i = 1; i <= 4; i++){
-                damage[i-1] = GameObject.Find("crack" + i).GetComponent<SpriteRenderer>();
-            }
+        damage = new SpriteRenderer[4];
+        for(int i = 1; i <= 4; i++){
+            damage[i-1] = GameObject.Find("crack" + i).GetComponent<SpriteRenderer>();
         }
-        
 
         moveVector = new Vector3();
     }
