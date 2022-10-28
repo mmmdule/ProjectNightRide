@@ -13237,6 +13237,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13421,6 +13422,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597a8fc87a24ef64db6a14b36b687332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelName: Izvan
+  Value: 1
 --- !u!1001 &524511620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19216,7 +19231,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -29639,6 +29654,8 @@ MonoBehaviour:
   isPaused: 0
   isCountingDown: 0
   isGameOver: 0
+  PerfectConeCheck: 1
+  ConesArePerfect: 0
 --- !u!1001 &1300894036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40306,6 +40323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.15
   speedOG: 0.15
+  NotPlayableSection: 0
 --- !u!212 &1798180241
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40560,6 +40578,7 @@ MonoBehaviour:
   iFrameCount: 0
   invinci: 0
   pause: 0
+  PerfectRun: 0
 --- !u!114 &1798180248
 MonoBehaviour:
   m_ObjectHideFlags: 0

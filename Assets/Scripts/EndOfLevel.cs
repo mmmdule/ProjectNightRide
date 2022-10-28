@@ -15,10 +15,23 @@ public class EndOfLevel : MonoBehaviour
     private AudioSource song; 
     int newScore;
     public bool isPaused, isCountingDown, isGameOver;
+
+    //za statistiku
+    public bool PerfectConeCheck, ConesArePerfect;
+    private bool savedStats, savedCoinStats;
+    //za statistiku
+
     //bool reachedEnd;
     // Start is called before the first frame update
     void Start()
     {
+        //za statistiku
+        ConesArePerfect = true;
+        savedStats = false;
+        savedCoinStats = false;
+        //za statistiku
+
+
         objectCollider = gameObject.GetComponent<BoxCollider2D>();        
         playerCollider = GameObject.Find("player").GetComponent<BoxCollider2D>();
         PauseButton = GameObject.Find("PauseButton");
@@ -53,18 +66,52 @@ public class EndOfLevel : MonoBehaviour
         //if(reachedEnd){
             if(!song.isPlaying && !isPaused && !isCountingDown && !isGameOver){
                 //iz funkcije koja je ranije bila kolizija EndLevelTrigger-a sa Player-om
-                Debug.Log("Hit end.");
+                Debug.Log("Hit end. " + ". isPaused: " + isPaused.ToString() + ". isCountingDown: " + isCountingDown.ToString() + ". isGameOver: " + isGameOver.ToString());
                 PauseButton.SetActive(false);
                 //reachedEnd = true;
+
+
+
                 newScore=int.Parse(GameObject.Find("Score").GetComponent<Text>().text); 
                 endOfLevel.GetComponent<Canvas>().enabled=true;
+
+                //za statistiku
+                if(!savedStats){
+                    if(PerfectConeCheck){
+                        if(ConesArePerfect){
+                            int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
+                            PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                        }
+                    }
+                    else{
+                        if(GameObject.Find("player").GetComponent<PlayerCrash>().PerfectRun){
+                            int perfectRuns = PlayerPrefs.GetInt("PerfectRuns",0);
+                            PlayerPrefs.SetInt("PerfectRuns", perfectRuns + 1);
+                        }
+                    }
+                    savedStats = true;
+                }
+                
+                //za statistiku
+
                 if(newScore>0){
-                    if(newScore > PlayerPrefs.GetInt(HighScorePrefName)){
+
+                    //za statistiku
+                    if(!savedCoinStats){
+                        int coinCount = PlayerPrefs.GetInt("CollectedCoins",0);
+                        PlayerPrefs.SetInt("CollectedCoins", coinCount + newScore/50);
+                        savedCoinStats = true;
+                    }
+                    
+                    //za statistiku
+
+                    if(newScore > PlayerPrefs.GetInt(HighScorePrefName, 0)){
+                        Debug.Log("New High Score is " + newScore.ToString());
+                        Debug.Log("Previous High Score was " + PlayerPrefs.GetInt(HighScorePrefName, 0));
                         newHighScore.SetActive(true);
                         newHighScoreShadow.SetActive(true);
                         PlayerPrefs.SetInt(HighScorePrefName , newScore);
                         PlayerPrefs.Save();
-                        Debug.Log("New High Score is " + newScore.ToString());
                     }
                 }                       
                 else{
@@ -87,7 +134,10 @@ public class EndOfLevel : MonoBehaviour
                             cones[i].SetActive(false);
                     }
                 }
-            StartCoroutine(exitDelay(3.75f));
+
+                PlayerPrefs.Save(); //mozda izbaciti ako mnogo utice na performanse
+
+                StartCoroutine(exitDelay(3.75f));
                 /*//iz funkcije koja je ranije bila kolizija EndLevelTrigger-a sa Player-om
 
                     textExit.GetComponent<Text>().enabled = true;

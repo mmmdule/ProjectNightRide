@@ -7,6 +7,7 @@ public class StarScript : MonoBehaviour
     public string LevelName;
     public int limit;
     public bool one,two,three;
+    public bool isMainMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,8 @@ public class StarScript : MonoBehaviour
 
         if(PlayerPrefs.GetInt(LevelName)>=limit){
             Debug.Log(LevelName + " = " + PlayerPrefs.GetInt(LevelName));
-            gameObject.GetComponent<SpriteRenderer>().color = starColor;
+            if(!isMainMenu)
+                gameObject.GetComponent<SpriteRenderer>().color = starColor;
             
             if(one)
                 PlayerPrefs.SetInt(LevelName + "Stars", 1);
