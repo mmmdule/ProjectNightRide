@@ -73,6 +73,8 @@ public class Arrow : MonoBehaviour
             damage[3].sortingOrder = spriteR.sortingOrder + 1;
         }
         if (direction=="up" && sortOrder > 4){
+            Debug.Log("Sort order (moving up): " + sortOrder);
+
             upArrow.StopAllCoroutines();
             downArrow.StopAllCoroutines();
 
