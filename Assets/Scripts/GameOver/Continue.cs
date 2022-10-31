@@ -49,11 +49,6 @@ public class Continue : MonoBehaviour
         }
         else
         {
-            //za statistiku
-            int Continues = PlayerPrefs.GetInt("Continues",0);
-            PlayerPrefs.SetInt("Continues", Continues + 1);
-            //za statistiku
-
             switch(difficulty){
                 case 0: case 1:    
                     hitUI2 = GameObject.Find("LifeDot2");

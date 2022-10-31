@@ -15,20 +15,11 @@ public class coneScript : MonoBehaviour
     private float x;
     private bool once=false;
     private SpriteRenderer coneRenderer;
-
-    //za statistiku
-    private EndOfLevel EndTrigger;
-    //za statistiku
-    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("player");
         coneRenderer = gameObject.GetComponent<SpriteRenderer>();
-
-        //za statistiku
-        EndTrigger = GameObject.Find("EndOfLevelTrigger").GetComponent<EndOfLevel>();
-        //za statistiku
     }
 
     // Update is called once per frame
@@ -44,11 +35,6 @@ public class coneScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag=="Player" && !once){
-
-            //za statistiku
-            EndTrigger.ConesArePerfect = false;
-            //za statistiku
-
             once = true;
             ScoreCounter = GameObject.Find("Score");        
             ScoreCounter2 = GameObject.Find("ScoreShadow");
