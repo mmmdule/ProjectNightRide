@@ -22,6 +22,16 @@ Project Night Ride is a video-game inspired by the music and aesthetics of the S
 - 16-bit (ETC2 fallback)
 - LZ4HC (compression)
 
+## Best compression settings (so far)
+
+### Mid-to-best size, good performance and visuals
+- **Max Size** — 512 (All Except Backgrounds)
+- **Resize algorithm** — Mitchell
+- **Format** — RGBA Compressed ETC2 8 bits
+- **Compression** — Normal Quality 
+- **Crunch Compress** — 100 
+- **Size** — 72MB apk, 90MB app
+
 ***
 
 ## Side-notes
