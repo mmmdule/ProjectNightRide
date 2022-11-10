@@ -189,18 +189,6 @@ public class EndOfLevel : MonoBehaviour
         textExitShadow.GetComponent<Text>().enabled = true;
         button.GetComponent<Button>().enabled = true;
 
-        
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().enabled = false;
-        
-        GameObject.Find("LeftPiece").GetComponent<BoxCollider2D>().enabled = false;
-        GameObject.Find("RightPiece").GetComponent<BoxCollider2D>().enabled = false;
-
-        GameObject.Find("ButtonCanvas").SetActive(false);
-        //GameObject.Find("CenterPiece").GetComponent<BoxCollider2D>().enabled = false;
-        
-        //GameObject.Find("player").GetComponent<PlayerMovement>().speed += 0.04f;
-        //GameObject.Find("player").GetComponent<PlayerMovement>().speedOG += 0.04f;
-
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
