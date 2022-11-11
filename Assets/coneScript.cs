@@ -35,11 +35,11 @@ public class coneScript : MonoBehaviour
     void Update()
     {
 
-        // x = gameObject.transform.position.x;
-        // if (x - player.transform.position.x < 25f/*distanceRender*/)
-        //     coneRenderer.enabled = true;
-        // if (player.transform.position.x - x > 15f)            
-        //     GameObject.Destroy(gameObject);
+        x = gameObject.transform.position.x;
+        if (x - player.transform.position.x < 25f/*distanceRender*/)
+            coneRenderer.enabled = true;
+        if (player.transform.position.x - x > 15f)            
+            GameObject.Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

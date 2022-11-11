@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 92bb353ecb1aa7b4a825b2a2927675de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - zastavaPrefabBlue: {fileID: 5035528525673926132, guid: d9725d19751a237459229bdeb5428601, type: 3}
+  - zastavaPrefabGreen: {fileID: 5035528525673926132, guid: d9725d19751a237459229bdeb5428601, type: 3}
+  - zastavaPrefabRed: {fileID: 5035528525673926132, guid: 6eed79e055bf3a542bf0b0070b2539d7, type: 3}
+  - zastavaPrefabOrange: {fileID: 5035528525673926132, guid: 56aaa0a866ba313449c52280e37ff59f, type: 3}
+  - zastavaPrefabBlack: {fileID: 5035528525673926132, guid: bed4d49c284a699498ee101f6c1da693, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
