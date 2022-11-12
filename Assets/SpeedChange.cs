@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpeedChange : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class SpeedChange : MonoBehaviour
     private PauseContinue pauseContinueScript;
 
     private CameraScript cameraScript;
+
+
+    private Button SpeedUpButton;
+    private Text SpeedUpText;
+    private Image SpeedUpImage;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +30,10 @@ public class SpeedChange : MonoBehaviour
         pauseContinueScript = player.GetComponent<PauseContinue>();
 
         cameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+
+        SpeedUpButton = GameObject.Find("SpeedUp").GetComponent<Button>();
+        SpeedUpImage = GameObject.Find("SpeedUp").GetComponent<Image>();
+        SpeedUpText = GameObject.Find("SpeedUpText").GetComponent<Text>();
     }
 
 
@@ -32,7 +42,33 @@ public class SpeedChange : MonoBehaviour
     {
         if(changePoints.Count>0){
             if(player.transform.position.x >= changePoints[0]){
+                SpeedUpButton.enabled = true;
+                SpeedUpImage.enabled = true;
+                SpeedUpText.enabled = true;
+
                 //Enable Speed Button. On click it will call the ChangeSpeed() method
+                
+                /*
+                playerMovementScript.speedOG += changeValues[0];
+                playerMovementScript.speed += changeValues[0];
+
+                cameraScript.coinObstacleSpeed += changeValues[0];
+                
+                pauseContinueScript.spid += changeValues[0];
+                pauseContinueScript.spidNPC += changeValues[0];
+
+                changePoints.RemoveAt(0);
+                changeValues.RemoveAt(0);
+
+                */
+                //0++;
+            }
+        }
+        
+    }
+
+    public void ChangeSpeed(){
+        if(changePoints.Count>0){
                 playerMovementScript.speedOG += changeValues[0];
                 playerMovementScript.speed += changeValues[0];
 
@@ -44,26 +80,11 @@ public class SpeedChange : MonoBehaviour
                 changePoints.RemoveAt(0);
                 changeValues.RemoveAt(0);
                 //0++;
-            }
-        }
-        
-    }
 
-    public void ChangeSpeed(){
-        if(changePoints.Count>0){
-            if(player.transform.position.x >= changePoints[0]){
-                    playerMovementScript.speedOG += changeValues[0];
-                    playerMovementScript.speed += changeValues[0];
-
-                    cameraScript.coinObstacleSpeed += changeValues[0];
-                    
-                    pauseContinueScript.spid += changeValues[0];
-                    pauseContinueScript.spidNPC += changeValues[0];
-
-                    changePoints.RemoveAt(0);
-                    changeValues.RemoveAt(0);
-                    //0++;
-            }
+                SpeedUpButton.enabled = false;
+                SpeedUpImage.enabled = false;
+                SpeedUpText.enabled = false;
+                Debug.Log("Turbo Button Visuals OFF");
         }
     }
 }

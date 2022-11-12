@@ -9,10 +9,11 @@ public class JSON_save : MonoBehaviour
     public string saveString = "";
     public string LevelName;
     
+    private CoinListClass coinListClassObject = new CoinListClass();
     private ConeListClass coneListClassObject = new ConeListClass();
     private ZastavaListClass zastavaListClassObject = new ZastavaListClass(); //sa ovolikim imenom ko Javu da pisem
     public string dataPath;
-    public bool save, cars = true, cones, saveCones;
+    public bool save, cars = true, cones, saveCones, coins = true, saveCoins;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,12 @@ public class JSON_save : MonoBehaviour
                 LoadCones();//metoda za ucitavanje cunjeva
         }
 
+        if(coins){
+            if(saveCoins)
+                SaveCoin(coinListClassObject);
+            else
+                LoadCoins();
+        }
 
         //Save(zastavaListClassObject);
 
@@ -210,6 +217,68 @@ public class JSON_save : MonoBehaviour
             this.orderInLayer = orderInLayer;
         }
     }
+
+
+    public GameObject coinPrefab;
+
+    [Serializable]
+    public class CoinListClass{
+        public List<CoinData> coinDataList = new List<CoinData>();
+    }
+
+    [Serializable]
+    public class CoinData{
+        //public Transform transformData;
+        public Vector3 position;
+        public int orderInLayer;
+        public bool isMoving;
+        public CoinData(Vector3 position, int orderInLayer, bool isMoving)
+        {
+            this.position = position;
+            this.orderInLayer = orderInLayer;
+            this.isMoving = isMoving;
+        }
+    }
+
+    void SaveCoin(CoinListClass coinListClassObject){
+        GameObject[] array = GameObject.FindGameObjectsWithTag("Coin");
+
+        CoinData tmp = new CoinData(Vector3.zero, 0, false);
+        for(int i = 0; i < array.Length; i++){
+            tmp = new CoinData(array[i].transform.position, array[i].GetComponent<SpriteRenderer>().sortingOrder, array[i].GetComponent<CoinScript>().moving);
+
+            coinListClassObject.coinDataList.Add(tmp);
+            //coneListClassObject.coneDataList.Add(new ConeData(array[i].transform.position, array[i].GetComponent<SpriteRenderer>().sortingOrder));
+        }
+        
+        saveString = JsonUtility.ToJson(coinListClassObject);
+
+        if(LevelName!=""){
+            File.WriteAllText(Application.dataPath + LevelName + "Coins.json", saveString);
+            Debug.Log("Coins JSON saved.");
+        }
+    }
+
+    
+    void LoadCoins(){
+        var jsonString = Resources.Load<TextAsset>("JSON/Assets" + LevelName + "Coins");//File.ReadAllText(dataPath + LevelName + ".json");
+        
+        Quaternion quaternion = Quaternion.identity;//new Quaternion(0f,0f,-1.511f,0f);
+        GameObject tmp = new GameObject();
+        coinListClassObject = JsonUtility.FromJson<CoinListClass>(jsonString.text);
+        Vector3 vectorRotate = Vector3.zero;
+        vectorRotate.z = -38.336f;
+        foreach(CoinData coinData in coinListClassObject.coinDataList){
+            tmp = Instantiate(coinPrefab, coinData.position, quaternion);
+            tmp.GetComponent<SpriteRenderer>().sortingOrder = coinData.orderInLayer;
+            tmp.GetComponent<CoinScript>().moving = coinData.isMoving;
+            tmp.GetComponent<CoinScript>().Camera = GameObject.FindGameObjectWithTag("MainCamera");
+        }
+        Debug.Log("Loaded all coin gameObjects.");
+    }
+
+
+
 }
 
 
