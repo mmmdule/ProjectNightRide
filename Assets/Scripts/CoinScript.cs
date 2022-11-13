@@ -57,17 +57,14 @@ public class CoinScript : MonoBehaviour
         //iz CoinMovement
         if(moving){
             speed = Camera.GetComponent<CameraScript>().coinObstacleSpeed;
+            vectorPos.x += speed; 
+            transform.position = vectorPos;
         }
-        if (!(BoxCollider.IsTouching(wallL) || BoxCollider.IsTouching(wallR))){
-                vectorPos.x += speed; 
-                transform.position = vectorPos;
-        }
-        //iz CoinMovement
 
-        x = gameObject.transform.position.x;
+        //x = gameObject.transform.position.x;
         transform.Rotate (Vector3.up * -4); //ROTATION
-        if (player.transform.position.x - x > 15f)            
-            GameObject.Destroy(gameObject);
+        //if (player.transform.position.x - x > 15f)            
+            //gameObject.SetActive(false);//GameObject.Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -77,7 +74,8 @@ public class CoinScript : MonoBehaviour
                 ScoreText.SetAllDirty();
                 ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) + value).ToString());
                 ScoreText2.SetAllDirty();
-                GameObject.Destroy(gameObject); //RemoveObject();
+                //GameObject.Destroy(gameObject); //RemoveObject();
+                gameObject.SetActive(false);
         }
     }
 

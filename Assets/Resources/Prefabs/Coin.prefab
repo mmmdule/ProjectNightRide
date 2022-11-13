@@ -121,7 +121,7 @@ MonoBehaviour:
   ScoreCounter: {fileID: 0}
   ScoreCounter2: {fileID: 0}
   player: {fileID: 0}
-  value: 10
+  value: 50
 --- !u!114 &-7418408343121713849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +135,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  ScoreCounter: {fileID: 0}
-  ScoreCounter2: {fileID: 0}
-  value: 0
