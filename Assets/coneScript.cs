@@ -19,6 +19,10 @@ public class coneScript : MonoBehaviour
     //za statistiku
     private EndOfLevel EndTrigger;
     //za statistiku
+
+    private Text ComboText, ComboTextShadow, ComboUI, ComboUIShadow;
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,11 @@ public class coneScript : MonoBehaviour
         //za statistiku
         EndTrigger = GameObject.Find("EndOfLevelTrigger").GetComponent<EndOfLevel>();
         //za statistiku
+
+        ComboUI = GameObject.Find("ComboUI").GetComponent<Text>();
+        ComboUIShadow = GameObject.Find("ComboUIShadow").GetComponent<Text>();
+        ComboText = GameObject.Find("Combo").GetComponent<Text>();
+        ComboTextShadow = GameObject.Find("ComboShadow").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -60,8 +69,17 @@ public class coneScript : MonoBehaviour
             ScoreText.SetAllDirty();
             ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) - 50).ToString());
             ScoreText2.SetAllDirty();
+
+            ComboUI.enabled = false;
+            ComboUIShadow.enabled = false;
+            CoinScript.ComboCount = 0;
+            ComboText.text = "";
+            ComboText.SetAllDirty();
+            ComboTextShadow.text = "";
+            ComboTextShadow.SetAllDirty();
+
             //Debug.Log("-50 by " + gameObject.name);
-            GameObject.Destroy(gameObject);//Immediate(gameObject);
+            gameObject.SetActive(false);//GameObject.Destroy(gameObject);//Immediate(gameObject);
         }
     }
 }

@@ -18,6 +18,8 @@ public class SpeedChange : MonoBehaviour
     private Button SpeedUpButton;
     private Text SpeedUpText;
     private Image SpeedUpImage;
+
+    private Text TurboText, TurboTextShadow;
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,9 @@ public class SpeedChange : MonoBehaviour
         SpeedUpButton = GameObject.Find("SpeedUp").GetComponent<Button>();
         SpeedUpImage = GameObject.Find("SpeedUp").GetComponent<Image>();
         SpeedUpText = GameObject.Find("SpeedUpText").GetComponent<Text>();
+
+        TurboText = GameObject.Find("TurboUI").GetComponent<Text>();
+        TurboTextShadow = GameObject.Find("TurboUIShadow").GetComponent<Text>();
     }
 
 
@@ -84,6 +89,10 @@ public class SpeedChange : MonoBehaviour
                 SpeedUpButton.enabled = false;
                 SpeedUpImage.enabled = false;
                 SpeedUpText.enabled = false;
+
+                TurboText.enabled = true;
+                TurboTextShadow.enabled = true;
+
                 Debug.Log("Turbo Button Visuals OFF");
         }
     }

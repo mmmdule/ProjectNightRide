@@ -7,19 +7,23 @@ public class EndOfLevel : MonoBehaviour
 {
     private BoxCollider2D objectCollider;
     private BoxCollider2D playerCollider;
-    public string HighScorePrefName;
+    public string HighScorePrefName, ComboPrefName;
     public GameObject endOfLevel,newHighScore,newHighScoreShadow;
     private GameObject PauseButton;
 
     private GameObject Congrats,CongratsShadow, textExit, textExitShadow, button;
     private AudioSource song; 
-    int newScore;
+    int newScore, newCombo;
     public bool isPaused, isCountingDown, isGameOver;
 
     //za statistiku
     public bool PerfectConeCheck, ConesArePerfect;
     private bool savedStats, savedCoinStats;
     //za statistiku
+
+    private Text ComboText, ComboTextShadow, ComboUI, ComboUIShadow;
+    public bool hasTurbo;
+    private GameObject TurboText, SpeedUp;
 
     //bool reachedEnd;
     // Start is called before the first frame update
@@ -44,20 +48,33 @@ public class EndOfLevel : MonoBehaviour
         song = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         //reachedEnd = false;
 
-    int difficulty = PlayerPrefs.GetInt("difficulty", 0);
-        switch(difficulty){
-            case 0:
-                break;
-            case 1:
-                HighScorePrefName += "Medium";
-                break;
-            case 2:
-                HighScorePrefName += "Hard";
-                break;
-            default:
-                break;
-        }
+        ComboPrefName = HighScorePrefName;
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+            switch(difficulty){
+                case 0:
+                    break;
+                case 1:
+                    HighScorePrefName += "Medium";
+                    ComboPrefName += "Medium";
+                    break;
+                case 2:
+                    HighScorePrefName += "Hard";
+                    ComboPrefName += "Hard";
+                    break;
+                default:
+                    break;
+            }
+        ComboPrefName += "Combo";
         
+        
+        ComboUI = GameObject.Find("ComboUI").GetComponent<Text>();
+        ComboUIShadow = GameObject.Find("ComboUIShadow").GetComponent<Text>();
+        ComboText = GameObject.Find("Combo").GetComponent<Text>();
+        ComboTextShadow = GameObject.Find("ComboShadow").GetComponent<Text>();
+        if(hasTurbo){
+            SpeedUp = GameObject.Find("SpeedUp");
+            TurboText = GameObject.Find("TurboText");
+        }
     }
 
     // Update is called once per frame
@@ -70,8 +87,16 @@ public class EndOfLevel : MonoBehaviour
                 PauseButton.SetActive(false);
                 //reachedEnd = true;
 
-
-
+                newCombo = CoinScript.ComboCountMax;
+                ComboUI.enabled = false;
+                ComboUIShadow.enabled = false;
+                ComboText.enabled = false;
+                ComboTextShadow.enabled = false;
+                if(hasTurbo){
+                    SpeedUp.SetActive(false);
+                    TurboText.SetActive(false);
+                }
+                
                 newScore=int.Parse(GameObject.Find("Score").GetComponent<Text>().text); 
                 endOfLevel.GetComponent<Canvas>().enabled=true;
 
@@ -93,6 +118,10 @@ public class EndOfLevel : MonoBehaviour
                 }
                 
                 //za statistiku
+
+                if(newCombo > PlayerPrefs.GetInt(ComboPrefName, 0)){
+                    PlayerPrefs.SetInt(ComboPrefName, newCombo);
+                }
 
                 if(newScore>0){
 
@@ -189,13 +218,16 @@ public class EndOfLevel : MonoBehaviour
         textExitShadow.GetComponent<Text>().enabled = true;
         button.GetComponent<Button>().enabled = true;
 
-        
+        playerCollider.enabled = false;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>().enabled = false;
-        
+
+        GameObject.Find("EndLevelButton").GetComponent<Button>().enabled = true;
+
         GameObject.Find("LeftPiece").GetComponent<BoxCollider2D>().enabled = false;
         GameObject.Find("RightPiece").GetComponent<BoxCollider2D>().enabled = false;
 
-        GameObject.Find("ButtonCanvas").SetActive(false);
+        GameObject.Find("ButtonCanvas").GetComponent<Canvas>().enabled = false;
+        StopAllCoroutines();
         //GameObject.Find("CenterPiece").GetComponent<BoxCollider2D>().enabled = false;
         
         //GameObject.Find("player").GetComponent<PlayerMovement>().speed += 0.04f;

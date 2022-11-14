@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int ComboCount;
+
     public float speed,speedOG;
     private SpriteRenderer spriteR;
     private int sortOrder;
@@ -13,8 +15,10 @@ public class PlayerMovement : MonoBehaviour
    /* public GameObject leftPiece;
     public GameObject centerPiece;
     public GameObject rightPiece;*/
+    
     void Start()
     {
+        ComboCount = 0;
         /*leftPiece = GameObject.Find("LeftPiece");  
         centerPiece = GameObject.Find("CenterPiece"); 
         rightPiece = GameObject.Find("RightPiece"); */

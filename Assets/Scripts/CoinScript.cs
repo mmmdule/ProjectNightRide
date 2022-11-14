@@ -25,9 +25,17 @@ public class CoinScript : MonoBehaviour
 
     private SpriteRenderer sprite;
     private CoinMovement scriptMove;
+
+    private Text ComboText, ComboTextShadow, ComboUI, ComboUIShadow;
+    private GameObject comboParent;
+    public static int ComboCount, ComboCountMax;
+
     // Start is called before the first frame update
     void Start()
     {
+        ComboCount = 0;
+        ComboCountMax = 0;
+
         //iz CoinMovement
         wallR=GameObject.FindGameObjectWithTag("RightPiece").GetComponent<BoxCollider2D>();
         wallL=GameObject.FindGameObjectWithTag("LeftPiece").GetComponent<BoxCollider2D>();
@@ -46,6 +54,12 @@ public class CoinScript : MonoBehaviour
         ScoreText2 = ScoreCounter2.GetComponent<Text>();
         ScoreText = ScoreCounter.GetComponent<Text>();        
         player = GameObject.Find("player");
+
+        
+        ComboUI = GameObject.Find("ComboUI").GetComponent<Text>();
+        ComboUIShadow = GameObject.Find("ComboUIShadow").GetComponent<Text>();
+        ComboText = GameObject.Find("Combo").GetComponent<Text>();
+        ComboTextShadow = GameObject.Find("ComboShadow").GetComponent<Text>();
 
         sprite = gameObject.GetComponent<SpriteRenderer>();
         scriptMove = gameObject.GetComponent<CoinMovement>();
@@ -74,6 +88,17 @@ public class CoinScript : MonoBehaviour
                 ScoreText.SetAllDirty();
                 ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) + value).ToString());
                 ScoreText2.SetAllDirty();
+
+                ComboCount++;
+                if(ComboCount > ComboCountMax)
+                    ComboCountMax = ComboCount;
+                ComboUI.enabled = true;
+                ComboUIShadow.enabled = true;
+                ComboText.text = ComboCount.ToString() + "x";//ComboText.text.Replace(ComboText.text, ComboCount.ToString() + "x");
+                ComboText.SetAllDirty();
+                ComboTextShadow.text = ComboCount.ToString() + "x";//ComboTextShadow.text.Replace(ComboTextShadow.text, ComboCount.ToString() + "x");
+                ComboTextShadow.SetAllDirty();
+
                 //GameObject.Destroy(gameObject); //RemoveObject();
                 gameObject.SetActive(false);
         }
