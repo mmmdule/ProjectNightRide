@@ -84,10 +84,13 @@ public class CoinScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag=="Player"){
+                
+                //this block should be a static method
                 ScoreText.text = ScoreText.text.Replace(ScoreText.text, (int.Parse(ScoreText.text) + value).ToString());
                 ScoreText.SetAllDirty();
                 ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) + value).ToString());
                 ScoreText2.SetAllDirty();
+                //this block should be a static method
 
                 ComboCount++;
                 if(ComboCount > ComboCountMax)
