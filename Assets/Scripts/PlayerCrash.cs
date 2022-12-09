@@ -164,8 +164,8 @@ public class PlayerCrash : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle"){
             if(invinci==false){
                 
-                ComboUI.enabled = false;
-                ComboUIShadow.enabled = false;
+                ComboUI.text = "";
+                ComboUIShadow.text = "";
                 CoinScript.ComboCount = 0;
                 ComboText.text = "";
                 ComboText.SetAllDirty();

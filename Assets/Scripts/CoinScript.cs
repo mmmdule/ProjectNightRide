@@ -95,8 +95,8 @@ public class CoinScript : MonoBehaviour
                 ComboCount++;
                 if(ComboCount > ComboCountMax)
                     ComboCountMax = ComboCount;
-                ComboUI.enabled = true;
-                ComboUIShadow.enabled = true;
+                ComboUI.text = "Combo";
+                ComboUIShadow.text = "Combo";
                 ComboText.text = ComboCount.ToString() + "x";//ComboText.text.Replace(ComboText.text, ComboCount.ToString() + "x");
                 ComboText.SetAllDirty();
                 ComboTextShadow.text = ComboCount.ToString() + "x";//ComboTextShadow.text.Replace(ComboTextShadow.text, ComboCount.ToString() + "x");

@@ -31,6 +31,11 @@ public class SpeedChange : MonoBehaviour
     private Text ScoreText;
     public GameObject ScoreCounter2;
     private Text ScoreText2;
+
+    private int BonusValue;
+
+    [SerializeField]
+    int[] difficultyMultiplier;
     
     // Start is called before the first frame update
     void Start()
@@ -62,6 +67,22 @@ public class SpeedChange : MonoBehaviour
 
         TurboText = GameObject.Find("TurboUI").GetComponent<Text>();
         TurboTextShadow = GameObject.Find("TurboUIShadow").GetComponent<Text>();
+
+        difficultyMultiplier = new int[]{3, 5, 6};
+        int difficulty = PlayerPrefs.GetInt("difficulty", 0);
+        switch(difficulty){
+            case 0:
+                BonusValue = difficultyMultiplier[0];
+                break;
+            case 1:
+                BonusValue = difficultyMultiplier[1];
+                break;
+            case 2:
+                BonusValue = difficultyMultiplier[2];
+                break;
+            default:
+                break;
+        }
     }
 
     private int frameCount = 0;
@@ -74,9 +95,9 @@ public class SpeedChange : MonoBehaviour
         if(isHolding ){
             frameCount++;
             if(frameCount%60==0){
-                ScoreText.text = ScoreText.text.Replace(ScoreText.text, (int.Parse(ScoreText.text) + 1).ToString());
+                ScoreText.text = ScoreText.text.Replace(ScoreText.text, (int.Parse(ScoreText.text) + BonusValue * CoinScript.ComboCount).ToString());
                 ScoreText.SetAllDirty();
-                ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) + 1).ToString());
+                ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) + BonusValue * CoinScript.ComboCount).ToString());
                 ScoreText2.SetAllDirty();
             }
         }
@@ -112,8 +133,8 @@ public class SpeedChange : MonoBehaviour
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
             
-            TurboText.enabled = false;
-            TurboTextShadow.enabled = false;
+            TurboText.text = "";
+            TurboTextShadow.text = "";
         }
     }
 
@@ -138,8 +159,10 @@ public class SpeedChange : MonoBehaviour
                     //SpeedUpImage.enabled = false;
                     //SpeedUpText.enabled = false;
 
-                    TurboText.enabled = true;
-                    TurboTextShadow.enabled = true;
+                    if(CoinScript.ComboCount>0){
+                        TurboText.text = "SPEED BONUS";
+                        TurboTextShadow.text = "SPEED BONUS";
+                    }
 
                     //Debug.Log("Turbo Button Visuals OFF");
 
@@ -156,8 +179,9 @@ public class SpeedChange : MonoBehaviour
             pauseContinueScript.spid -= changeValues[0];
             pauseContinueScript.spidNPC -= changeValues[0];
     
-            TurboText.enabled = false;
-            TurboTextShadow.enabled = false;
+            
+            TurboText.text = "";
+            TurboTextShadow.text = "";
         }
     }
 }

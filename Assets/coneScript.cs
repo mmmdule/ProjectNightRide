@@ -70,8 +70,8 @@ public class coneScript : MonoBehaviour
             ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) - 50).ToString());
             ScoreText2.SetAllDirty();
 
-            ComboUI.enabled = false;
-            ComboUIShadow.enabled = false;
+            ComboUI.text = "";
+            ComboUIShadow.text = "";
             CoinScript.ComboCount = 0;
             ComboText.text = "";
             ComboText.SetAllDirty();
