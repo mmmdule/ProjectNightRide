@@ -4,11 +4,11 @@ Project Night Ride - Volume One
 Project Night Ride is a video-game inspired by the music and aesthetics of the Serbian music group Fantom.
 
 ## TODO List
-- Use sprite atlases to try and have less draw calls and therefore improved performance
+- Use sprite atlases to try and have less draw calls to improve performance
   - https://gamedevelopment.tutsplus.com/articles/using-texture-atlas-in-order-to-optimize-your-game--cms-26783
   - https://docs.unity3d.com/2022.2/Documentation/Manual/class-SpriteAtlas.html
   
-- ~~Perform static batching for static objects (traffic cones, coins in even numbered levels). Use the information at: https://docs.unity3d.com/Manual/static-batching.html~~
+- Perform static batching for static objects (traffic cones, coins in even numbered levels). Use the information at: https://docs.unity3d.com/Manual/static-batching.html~~
 
 ## Best build settings (so far)
 
@@ -21,6 +21,16 @@ Project Night Ride is a video-game inspired by the music and aesthetics of the S
 - ASTC
 - 16-bit (ETC2 fallback)
 - LZ4HC (compression)
+
+## Best compression settings (so far)
+
+### Mid-to-best size, good performance and visuals
+- **Max Size** — 512 (All Except Backgrounds)
+- **Resize algorithm** — Mitchell
+- **Format** — RGBA Compressed ETC2 8 bits
+- **Compression** — Normal Quality 
+- **Crunch Compress** — 100 
+- **Size** — 72MB apk, 90MB app
 
 ***
 

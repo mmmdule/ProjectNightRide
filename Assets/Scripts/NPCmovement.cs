@@ -11,14 +11,19 @@ public class NPCmovement : MonoBehaviour
     private Collider2D BoxCollider,wallR,wallL;
     
     public GameObject Camera;
+    private CameraScript cameraScript;
     // Start is called before the first frame update
     void Start()
     {
+        Camera = GameObject.Find("Main Camera");
+
         wallR=GameObject.FindGameObjectWithTag("RightPiece").GetComponent<BoxCollider2D>();
         wallL=GameObject.FindGameObjectWithTag("LeftPiece").GetComponent<BoxCollider2D>();
         BoxCollider = gameObject.GetComponent<BoxCollider2D>();
         //Camera = GameObject.Find("Main Camera");
         speed = Camera.GetComponent<CameraScript>().coinObstacleSpeed;
+
+        cameraScript = Camera.GetComponent<CameraScript>();
 
         vectorPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
@@ -26,7 +31,7 @@ public class NPCmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = Camera.GetComponent<CameraScript>().coinObstacleSpeed;
+        speed = cameraScript.coinObstacleSpeed;
         if (!(BoxCollider.IsTouching(wallL) || BoxCollider.IsTouching(wallR))){
             /*if(transform.rotation.y==180){
                 //vectorPos.x += speed;

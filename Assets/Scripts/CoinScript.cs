@@ -25,9 +25,17 @@ public class CoinScript : MonoBehaviour
 
     private SpriteRenderer sprite;
     private CoinMovement scriptMove;
+
+    private Text ComboText, ComboTextShadow, ComboUI, ComboUIShadow;
+    private GameObject comboParent;
+    public static int ComboCount, ComboCountMax;
+
     // Start is called before the first frame update
     void Start()
     {
+        ComboCount = 0;
+        ComboCountMax = 0;
+
         //iz CoinMovement
         wallR=GameObject.FindGameObjectWithTag("RightPiece").GetComponent<BoxCollider2D>();
         wallL=GameObject.FindGameObjectWithTag("LeftPiece").GetComponent<BoxCollider2D>();
@@ -47,6 +55,12 @@ public class CoinScript : MonoBehaviour
         ScoreText = ScoreCounter.GetComponent<Text>();        
         player = GameObject.Find("player");
 
+        
+        ComboUI = GameObject.Find("ComboUI").GetComponent<Text>();
+        ComboUIShadow = GameObject.Find("ComboUIShadow").GetComponent<Text>();
+        ComboText = GameObject.Find("Combo").GetComponent<Text>();
+        ComboTextShadow = GameObject.Find("ComboShadow").GetComponent<Text>();
+
         sprite = gameObject.GetComponent<SpriteRenderer>();
         scriptMove = gameObject.GetComponent<CoinMovement>();
     }
@@ -57,27 +71,39 @@ public class CoinScript : MonoBehaviour
         //iz CoinMovement
         if(moving){
             speed = Camera.GetComponent<CameraScript>().coinObstacleSpeed;
+            vectorPos.x += speed; 
+            transform.position = vectorPos;
         }
-        if (!(BoxCollider.IsTouching(wallL) || BoxCollider.IsTouching(wallR))){
-                vectorPos.x += speed; 
-                transform.position = vectorPos;
-        }
-        //iz CoinMovement
 
-        x = gameObject.transform.position.x;
+        //x = gameObject.transform.position.x;
         transform.Rotate (Vector3.up * -4); //ROTATION
-        if (player.transform.position.x - x > 15f)            
-            GameObject.Destroy(gameObject);
+        //if (player.transform.position.x - x > 15f)            
+            //gameObject.SetActive(false);//GameObject.Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag=="Player"){
+                
+                //this block should be a static method
                 ScoreText.text = ScoreText.text.Replace(ScoreText.text, (int.Parse(ScoreText.text) + value).ToString());
                 ScoreText.SetAllDirty();
                 ScoreText2.text = ScoreText2.text.Replace(ScoreText2.text, (int.Parse(ScoreText2.text) + value).ToString());
                 ScoreText2.SetAllDirty();
-                GameObject.Destroy(gameObject); //RemoveObject();
+                //this block should be a static method
+
+                ComboCount++;
+                if(ComboCount > ComboCountMax)
+                    ComboCountMax = ComboCount;
+                ComboUI.text = "Combo";
+                ComboUIShadow.text = "Combo";
+                ComboText.text = ComboCount.ToString() + "x";//ComboText.text.Replace(ComboText.text, ComboCount.ToString() + "x");
+                ComboText.SetAllDirty();
+                ComboTextShadow.text = ComboCount.ToString() + "x";//ComboTextShadow.text.Replace(ComboTextShadow.text, ComboCount.ToString() + "x");
+                ComboTextShadow.SetAllDirty();
+
+                //GameObject.Destroy(gameObject); //RemoveObject();
+                gameObject.SetActive(false);
         }
     }
 

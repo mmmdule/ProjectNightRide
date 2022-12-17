@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCrash : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class PlayerCrash : MonoBehaviour
     private GameObject endLevel;
 
     public bool PerfectRun; //za statistiku
+
+    
+    private GameObject comboParent;
+    private Text ComboUI, ComboUIShadow, ComboText, ComboTextShadow;
+
     void Start()
     {
         PerfectRun = true;
@@ -82,7 +88,11 @@ public class PlayerCrash : MonoBehaviour
             damage[i-1] = GameObject.Find("crack" + i).GetComponent<SpriteRenderer>();
         }
         
-
+        
+        ComboUI = GameObject.Find("ComboUI").GetComponent<Text>();
+        ComboUIShadow = GameObject.Find("ComboUIShadow").GetComponent<Text>();
+        ComboText = GameObject.Find("Combo").GetComponent<Text>();
+        ComboTextShadow = GameObject.Find("ComboShadow").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -153,6 +163,16 @@ public class PlayerCrash : MonoBehaviour
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         if (collision.gameObject.tag == "Obstacle"){
             if(invinci==false){
+                
+                ComboUI.text = "";
+                ComboUIShadow.text = "";
+                CoinScript.ComboCount = 0;
+                ComboText.text = "";
+                ComboText.SetAllDirty();
+                ComboTextShadow.text = "";
+                ComboTextShadow.SetAllDirty();
+
+
                 crashedNPC = collision.gameObject;            
                 collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 

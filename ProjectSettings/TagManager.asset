@@ -10,6 +10,7 @@ TagManager:
   - Pause
   - Countdown
   - Cone
+  - Coin
   layers:
   - Default
   - TransparentFX
