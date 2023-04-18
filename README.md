@@ -1,38 +1,18 @@
 # ProjectNightRide
-Project Night Ride - Volume One
+## Project Night Ride - Volume One
 
-Project Night Ride is a video-game inspired by the music and aesthetics of the Serbian music group Fantom.
+![logoTransparent - Copy](https://user-images.githubusercontent.com/113645355/232908616-200b7511-8cae-4b75-b745-c5c95c6669f2.png)
 
-## TODO List
-- Use sprite atlases to try and have less draw calls to improve performance
-  - https://gamedevelopment.tutsplus.com/articles/using-texture-atlas-in-order-to-optimize-your-game--cms-26783
-  - https://docs.unity3d.com/2022.2/Documentation/Manual/class-SpriteAtlas.html
-  
-- Perform static batching for static objects (traffic cones, coins in even numbered levels). Use the information at: https://docs.unity3d.com/Manual/static-batching.html~~
+Project Night Ride is a video-game inspired by the music and aesthetics of the Serbian music group [Fantom](https://www.instagram.com/fantom.mp3/) and their [Luna music video](https://www.youtube.com/watch?v=G6Betfd8Z0k).
 
-## Best build settings (so far)
+The game is built using the Unity Engine and C# for scripting. Currently the target platform is Android. As of right now, the game has not been finished nor officially released yet.
 
-### Mid size, but great performance
-- ETC2
-- 16-bit (ETC2 fallback)
-- LZ4HC (compression)
+## Latest Version
+The latest pre-release version can be downloaded [here](https://drive.google.com/file/d/1ntJVulsjeqwZ-zO98zplPhOxuGwi7y-o/view?usp=sharing).
 
-### Best size, but mid-to-bad perfomance (especially on Nikola's phone)
-- ASTC
-- 16-bit (ETC2 fallback)
-- LZ4HC (compression)
-
-## Best compression settings (so far)
-
-### Mid-to-best size, good performance and visuals
-- **Max Size** — 512 (All Except Backgrounds)
-- **Resize algorithm** — Mitchell
-- **Format** — RGBA Compressed ETC2 8 bits
-- **Compression** — Normal Quality 
-- **Crunch Compress** — 100 
-- **Size** — 72MB apk, 90MB app
-
-***
-
-## Side-notes
-- Older versions (named "Latest Stable" and "Older Stable Build") are placed together inside a .7z archive and uploaded on the borprog209 account. They were deleted from the local machine to free up disk space
+## Features
+- Fast-paced gameplay inspired by classic games such as Excitebike
+- Soundtrack-based levels. Each part of a track is based on the parts of the song currently being played.
+- Simple retro graphics
+- Game stats tracking system
+- Three difficulties
